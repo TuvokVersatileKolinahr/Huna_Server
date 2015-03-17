@@ -1,20 +1,39 @@
 /**
 * User.js
 *
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @description :: A user is using the system, can login and have an optional role
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
 module.exports = {
+  hash_string: function (text) {
+    var crypto = require('crypto');
+    var hashed = crypto.createHash('md5').update(text).digest('hex');
+    console.log("hashed", hashed);
+    return hashed;
+  },
+
+  beforeCreate: function (attrs, next) {
+    attrs.password = this.hash_string(attrs.password);
+    next();
+  },
+
+  beforeUpdate: function (attrs, next) {
+    attrs.password = this.hash_string(attrs.password);
+    next();
+  },
 
   attributes: {
 
     name : {
-      type: 'string'
+      type: 'string',
+      minLength: 6,
+      notEmpty: true,
+      required: true
     },
 
     email : {
-      type: 'string',
+      type: 'email',
       required: true,
       unique: true
     },
@@ -23,7 +42,9 @@ module.exports = {
       type: 'string',
       required: true,
       minLength: 6
-    }
+    },
+
+    last_login : { type: 'date' }
   }
 };
 
