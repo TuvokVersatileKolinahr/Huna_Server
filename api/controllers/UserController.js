@@ -14,9 +14,8 @@ module.exports = {
 
       if (user) {
         // compare the hashed password in the db with the one in the form
-        console.log("Form pass hash: ", User.hash_string(req.body.password));
-        console.log("DB pass hash:   ", user.password);
-
+        // console.log("Form pass hash: ", User.hash_string(req.body.password));
+        // console.log("DB pass hash:   ", user.password);
         if (User.hash_string(req.body.password) === user.password) {
           // password match
           req.session.user = user.id;

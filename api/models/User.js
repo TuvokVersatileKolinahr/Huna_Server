@@ -9,7 +9,7 @@ module.exports = {
   hash_string: function (text) {
     var crypto = require('crypto');
     var hashed = crypto.createHash('md5').update(text).digest('hex');
-    console.log("hashed", hashed);
+    // console.log("hashed", hashed);
     return hashed;
   },
 
