@@ -34,6 +34,13 @@ module.exports = {
     }
   },
 
+  logout: function(req, res) {
+    req.session.user = null;
+    req.session.message = "logged out";
+    // res.status(400).json({ error: 'Invalid password' });
+    return res.redirect('/login')
+  },
+
   login: function (req, res) {
   // var bcrypt = require('bcrypt');
 
