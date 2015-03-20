@@ -13,13 +13,7 @@
   label {  
       display: block;  
       color: #999;  
-  }
-  .errormessage {
-    border: red;
-    border-style: solid;
-    padding: 10px;
-    margin: 3px;
-  }
+  }  
   .cf:before,  
   .cf:after {  
       content: "";   
@@ -62,17 +56,5 @@
   }
 </style>
 <section class="loginform cf">
-  <form name="login" action="/login" method="post" accept-charset="utf-8">
-    <% if(req.session.message) { %>
-      <div class="errormessage"><%= req.session.message %></div>
-    <% } %>
-    <ul>
-      <li><label for="email">Email</label>
-      <input type="email" name="email" placeholder="yourname@email.com" required></li>
-      <li><label for="password">Password</label>
-      <input type="password" name="password" placeholder="password" required></li>
-      <li>
-      <input type="submit" value="Login"></li>
-    </ul>
-  </form>
+This is your account. <%= req.session.user.name %>
 </section>

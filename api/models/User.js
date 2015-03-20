@@ -9,17 +9,18 @@ module.exports = {
   hash_string: function (text) {
     var crypto = require('crypto');
     var hashed = crypto.createHash('md5').update(text).digest('hex');
-    // console.log("hashed", hashed);
     return hashed;
   },
 
   beforeCreate: function (attrs, next) {
     attrs.password = this.hash_string(attrs.password);
+    delete attrs['retypepassword'];
     next();
   },
 
   beforeUpdate: function (attrs, next) {
     attrs.password = this.hash_string(attrs.password);
+    delete attrs['retypepassword'];
     next();
   },
 

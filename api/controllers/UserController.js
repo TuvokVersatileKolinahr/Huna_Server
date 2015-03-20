@@ -6,8 +6,33 @@
  */
 
 module.exports = {
-	  login: function (req, res) {
-    // var bcrypt = require('bcrypt');
+  register: function (req, res) {
+    if (req.body.password === req.body.password) {
+      var newUser = User.create(req, res);
+      console.log("newUser", newUser);
+      res.json({ success: 'yay' });
+    }
+  },
+
+  create: function(req, res) {
+    // console.log("req.body", req.body);
+    if (req.body.password === req.body.retypepassword) {
+      User.create(req.body).exec(function(err, result){
+        if (err) {
+          //Handle Error
+        }
+        console.log("Created user: ", result);
+        req.session.user = result;
+        return res.redirect('/account')
+      });
+    } else {
+      //TODO: return something
+      console.log("passwords niet gelijk");
+    }
+  },
+
+  login: function (req, res) {
+  // var bcrypt = require('bcrypt');
 
     User.findOneByEmail(req.body.email).exec(function (err, user) {
       if (err) res.json({ error: 'DB error' }, 500);
@@ -18,15 +43,21 @@ module.exports = {
         // console.log("DB pass hash:   ", user.password);
         if (User.hash_string(req.body.password) === user.password) {
           // password match
-          req.session.user = user.id;
-          res.json(user);
+          req.session.user = user;
+          // res.json(user);
+          return res.redirect('/account')
         } else {
           // invalid password
           if (req.session.user) req.session.user = null;
-          res.json({ error: 'Invalid password' }, 400);
+          req.session.message = "Invalid password";
+          // res.status(400).json({ error: 'Invalid password' });
+          return res.redirect('/login')
         }
       } else {
-        res.json({ error: 'User not found' }, 404);
+        // res.status(404).json({ error: 'User not found' });
+        if (req.session.user) req.session.user = null;
+        req.session.message = "User not found";
+        return res.redirect('/login')
       }
     });
   }
