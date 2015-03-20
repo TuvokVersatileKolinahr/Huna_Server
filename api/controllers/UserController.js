@@ -28,6 +28,9 @@ module.exports = {
     } else {
       //TODO: return something
       console.log("passwords niet gelijk");
+      req.session.message = "Passwords do not match";
+      // res.status(400).json({ error: 'Invalid password' });
+      return res.redirect('/register')
     }
   },
 

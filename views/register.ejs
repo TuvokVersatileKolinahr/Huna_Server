@@ -14,6 +14,12 @@
       display: block;  
       color: #999;  
   }  
+  .errormessage {
+    border: red;
+    border-style: solid;
+    padding: 10px;
+    margin: 3px;
+  }
   .cf:before,  
   .cf:after {  
       content: "";   
@@ -57,6 +63,9 @@
 </style>
 <section class="registerform cf">
 <form name="register" action="/user/create" method="post" accept-charset="utf-8">
+  <% if(req.session.message) { %>
+    <div class="errormessage"><%= req.session.message %></div>
+  <% } %>
   <ul>
     <li>
       <label for="name">Name</label>
