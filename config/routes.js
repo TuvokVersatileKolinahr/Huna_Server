@@ -45,11 +45,6 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-  'get /login': { view: 'login' },
-  'get /register': { view: 'register' },
-  'post /login': 'UserController.login',
-  'get /account': { view: 'account' }
-  // ,
-  // 'post /register': 'UserController.register'
+  'post /login': 'UserController.login'
 
 };
