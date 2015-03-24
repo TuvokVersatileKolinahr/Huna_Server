@@ -6,14 +6,6 @@
  */
 
 module.exports = {
-  register: function (req, res) {
-    if (req.body.password === req.body.password) {
-      var newUser = User.create(req, res);
-      console.log("newUser", newUser);
-      res.json({ success: 'yay' });
-    }
-  },
-
   create: function(req, res) {
     User.create(req.body).exec(function(err, user){
       if (err) res.status(409).json({ error: 'user create error' });
