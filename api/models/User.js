@@ -14,19 +14,19 @@ module.exports = {
 
   beforeCreate: function (attrs, next) {
     attrs.password = this.hash_string(attrs.password);
-    delete attrs['retypepassword'];
+    // delete attrs['retypepassword'];
     next();
   },
 
   beforeUpdate: function (attrs, next) {
     attrs.password = this.hash_string(attrs.password);
-    delete attrs['retypepassword'];
+    // delete attrs['retypepassword'];
     next();
   },
 
   attributes: {
 
-    name : {
+    username : {
       type: 'string',
       minLength: 6,
       notEmpty: true,
