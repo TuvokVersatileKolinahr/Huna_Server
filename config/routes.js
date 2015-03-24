@@ -45,6 +45,7 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-  'post /login': 'UserController.login'
+  'post /login': 'UserController.login',
+  'get /api': "/"
 
 };
