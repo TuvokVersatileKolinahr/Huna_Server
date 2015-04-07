@@ -29,3 +29,7 @@ node_modules
 
 # local dir for public
 .tmp
+
+# sublime files
+*.sublime-project
+*.sublime-workspace
