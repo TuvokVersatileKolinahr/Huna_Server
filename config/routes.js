@@ -21,6 +21,11 @@
  */
 
 module.exports.routes = {
+  '/*':
+    function(req, res, next) {
+      console.log(req.method, req.url);
+      next();
+    },
 
   /***************************************************************************
   *                                                                          *
