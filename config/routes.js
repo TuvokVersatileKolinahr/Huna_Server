@@ -50,6 +50,6 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-  'post /login': 'UserController.login'
+  'post /api/login': 'UserController.login'
 
 };

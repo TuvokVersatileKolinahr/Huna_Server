@@ -22,9 +22,8 @@ module.exports = {
 
   login: function (req, res) {
   // var bcrypt = require('bcrypt');
-    console.log("find req.body.username", req.body.username);
     User.findOne({ username: req.body.username }).exec(function (err, user) {
-      console.log("user", user);
+      // console.log("user", user);
       if (err) res.status(500).json({ error: 'DB error' });
       else
         if (user) {
