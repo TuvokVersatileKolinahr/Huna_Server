@@ -159,8 +159,10 @@ module.exports = {
   forhost: function(req, res) {
     var criteria = {};
 
+    // collect all params
     criteria = _.merge({}, req.params.all(), req.body);
-    
+
+    //TODO: this doesn't feel right
     var done = false;
     for (var i = 0; i < mockData.length; i++) {
       if (mockData[i].host === criteria.host) {
