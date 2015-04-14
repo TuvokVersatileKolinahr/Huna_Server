@@ -19,7 +19,8 @@ module.exports = {
   },
 
   beforeUpdate: function (attrs, next) {
-    attrs.password = this.hash_string(attrs.password);
+    // console.log("attrs", attrs);
+    // attrs.password = this.hash_string(attrs.password);
     // delete attrs['retypepassword'];
     next();
   },
