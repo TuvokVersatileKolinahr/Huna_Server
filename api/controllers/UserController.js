@@ -16,7 +16,6 @@ module.exports = {
   logout: function(req, res) {
     req.session.user = null;
     req.session.message = "logged out";
-    // res.status(400).json({ error: 'Invalid password' });
     return res.redirect('/login')
   },
 
@@ -28,12 +27,8 @@ module.exports = {
       else
         if (user) {
           // compare the hashed password in the db with the one in the form
-          // console.log("Form pass hash: ", User.hash_string(req.body.password));
-          // console.log("DB pass hash:   ", user.password);
           if (User.hash_string(req.body.password) === user.password) {
             // password match
-            // req.session.user = user;
-            // return res.redirect('/account')
             var hat = require('hat');
 
             user.token = hat();
@@ -42,15 +37,10 @@ module.exports = {
             res.status(200).json({ user: user });
           } else {
             // invalid password
-            // if (req.session.user) req.session.user = null;
-            // req.session.message = "Invalid password";
-            // return res.redirect('/login')
             res.status(422).json({ error: 'Invalid password' });
           }
         } else {
-          // if (req.session.user) req.session.user = null;
-          // req.session.message = "User not found";
-          // return res.redirect('/login')
+          // user not found
           res.status(404).json({ error: 'User not found' });
         }
     });
