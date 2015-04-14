@@ -45,7 +45,8 @@ module.exports = {
       minLength: 6
     },
 
-    last_login : { type: 'date' }
+    last_login : { type: 'datetime' },
+    token: { type: 'string' }
   }
 };
 
