@@ -34,6 +34,11 @@ module.exports = {
             // password match
             // req.session.user = user;
             // return res.redirect('/account')
+            var hat = require('hat');
+
+            user.token = hat();
+            user.last_login = new Date().toISOString();
+            user.save();
             res.status(200).json({ user: user });
           } else {
             // invalid password
