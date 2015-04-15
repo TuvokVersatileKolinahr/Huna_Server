@@ -149,13 +149,6 @@ var mockData =   [
   }
 ];
 module.exports = {
-  hosts: function(req, res) {
-    var mockHosts = [];
-    for (var i = 0; i < mockData.length; i++) {
-      mockHosts.push({"host": mockData[i].host});
-    }
-    res.status(200).json({ hosts: mockHosts })
-  },
   forhost: function(req, res) {
     var criteria = {};
 
@@ -165,7 +158,7 @@ module.exports = {
     //TODO: this doesn't feel right
     var done = false;
     for (var i = 0; i < mockData.length; i++) {
-      if (mockData[i].host === criteria.host) {
+      if (mockData[i].name === criteria.host) {
         done = true;
         res.status(200).json({errordata: mockData[i].errordata});
       }
