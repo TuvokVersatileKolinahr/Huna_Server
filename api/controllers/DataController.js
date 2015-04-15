@@ -158,7 +158,7 @@ module.exports = {
     //TODO: this doesn't feel right
     var done = false;
     for (var i = 0; i < mockData.length; i++) {
-      if (mockData[i].name === criteria.host) {
+      if (mockData[i].host === criteria.name) {
         done = true;
         res.status(200).json({errordata: mockData[i].errordata});
       }
