@@ -6,6 +6,8 @@
 */
 module.exports = {
   beforeCreate: function (attrs, next) {
+    console.log("Create hosts", attrs);
+    next();
   },
 
   beforeUpdate: function (attrs, next) {
@@ -16,9 +18,6 @@ module.exports = {
     name : {
       type: 'string',
       required: true
-    },
-    owner: {
-      type: 'User'
     }
   }
 };
