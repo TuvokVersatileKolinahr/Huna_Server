@@ -149,6 +149,26 @@ var mockData =   [
   }
 ];
 module.exports = {
+  mockdata: function(req, res) {
+    var criteria = {};
+
+    // collect all params
+    criteria = _.merge({}, req.params.all(), req.body);
+
+    var MongoClient = require('mongodb').MongoClient;
+    var url = 'mongodb://localhost:27017/huna-dev';
+    MongoClient.connect(url, function(err, db) {
+        var collection = db.collection('mockdata');
+
+        // Find all data
+        collection.find({ "host": criteria.name })
+          .limit(1)
+          .toArray(function(err, d) {
+            db.close();
+            res.json(d);
+        });
+      });
+  },
   forhost: function(req, res) {
     var criteria = {};
 
