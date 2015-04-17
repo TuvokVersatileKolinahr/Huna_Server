@@ -156,7 +156,7 @@ module.exports = {
         var collection = db.collection('mockdata');
 
         // Find all data
-        collection.find({ "host": criteria.name })
+        collection.find({ "host": req.options.values.criteria.name })
           .limit(1)
           .toArray(function(err, d) {
             db.close();
@@ -168,7 +168,7 @@ module.exports = {
     //TODO: this doesn't feel right
     var done = false;
     for (var i = 0; i < mockData.length; i++) {
-      if (mockData[i].host === criteria.name) {
+      if (mockData[i].host === req.options.values.criteria.name) {
         done = true;
         res.status(200).json({errordata: mockData[i].errordata});
       }
