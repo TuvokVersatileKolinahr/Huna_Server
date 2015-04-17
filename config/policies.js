@@ -28,6 +28,12 @@ module.exports.policies = {
 
   // '*': true,
 
+  // Policy for all actions of a specific controller
+  'DataController': {
+      '*': 'collectParams'
+  },
+
+
   /***************************************************************************
   *                                                                          *
   * Here's an example of mapping some policies to run before a controller    *
