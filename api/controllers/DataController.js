@@ -150,11 +150,6 @@ var mockData =   [
 ];
 module.exports = {
   mockdata: function(req, res) {
-    var criteria = {};
-
-    // collect all params
-    criteria = _.merge({}, req.params.all(), req.body);
-
     var MongoClient = require('mongodb').MongoClient;
     var url = 'mongodb://localhost:27017/huna-dev';
     MongoClient.connect(url, function(err, db) {
@@ -170,11 +165,6 @@ module.exports = {
       });
   },
   forhost: function(req, res) {
-    var criteria = {};
-
-    // collect all params
-    criteria = _.merge({}, req.params.all(), req.body);
-
     //TODO: this doesn't feel right
     var done = false;
     for (var i = 0; i < mockData.length; i++) {
