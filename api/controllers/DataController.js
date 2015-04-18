@@ -159,6 +159,7 @@ module.exports = {
         collection.find({ "host": req.options.values.criteria.name })
           .limit(1)
           .toArray(function(err, d) {
+            d[0].count = d[0].errordata.length;
             db.close();
             res.json(d);
         });
