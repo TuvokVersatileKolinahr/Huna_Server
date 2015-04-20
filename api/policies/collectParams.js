@@ -16,10 +16,10 @@ module.exports = function (req, res, next) {
     if(!req.options.values)
       req.options.values = {};
     
+    console.log('criteria', criteria);
     req.options.values.criteria = criteria;
-
-    console.log(req.options.model);      // Model name - if you are using blueprints
-    console.log(req.options.controller); // Controller name
-    console.log(req.options.action);     // Action name
+    // console.log(req.options.model);      // Model name - if you are using blueprints
+    // console.log(req.options.controller); // Controller name
+    // console.log(req.options.action);     // Action name
     next();
 };
