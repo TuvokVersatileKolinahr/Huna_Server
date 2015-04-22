@@ -30,7 +30,7 @@ module.exports.policies = {
 
   // Policy for all actions of a specific controller
   'DataController': {
-      '*': 'collectParams'
+      '*': ['collectParams', 'authenticated']
   },
 
 
