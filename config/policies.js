@@ -32,6 +32,9 @@ module.exports.policies = {
   'DataController': {
       '*': ['collectParams', 'authenticated']
   },
+  'UserController': {
+      'logout': 'authenticated'
+  },
 
 
   /***************************************************************************
