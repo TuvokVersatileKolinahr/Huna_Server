@@ -14,8 +14,16 @@ module.exports = {
   },
 
   logout: function(req, res) {
-    req.session.user = null;
-    res.status(200).json({ logout: 'true' });
+    var accessToken = req.get('Authorization').split(" ")[1];
+    User.findOne( { token: accessToken }, function(err, user) {
+      if (err) res.status(500).json({ error: 'DB error' });
+      else {
+        delete user.token;
+        console.log("logged out user", user);
+        req.session.user = null;
+        res.status(200).json({ logout: 'true' });
+      }
+    });
   },
 
   login: function (req, res) {
