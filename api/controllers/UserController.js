@@ -15,8 +15,7 @@ module.exports = {
 
   logout: function(req, res) {
     req.session.user = null;
-    req.session.message = "logged out";
-    return res.redirect('/login')
+    res.status(200).json({ logout: 'true' });
   },
 
   login: function (req, res) {
