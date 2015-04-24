@@ -19,6 +19,7 @@
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.connections.html
  */
 
+require('dotenv').load();
 var dbUrl = 'mongodb://%s:%s@%s:%s/%s', process.env.DB_USER, process.env.DB_PASS, process.env.DB_HOST, process.env.DB_PORT, process.env.DB_NAME;
 
 module.exports.connections = {
