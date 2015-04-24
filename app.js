@@ -53,8 +53,6 @@ process.chdir(__dirname);
     }
   }
 
-  // load the environment settings stored in .env or in shell variables
-  var dotenv = require('dotenv').load();
 
   // Start server
   sails.lift(rc('sails'));
