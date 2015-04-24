@@ -19,6 +19,8 @@
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.connections.html
  */
 
+var dbUrl = 'mongodb://%s:%s@%s:%s/%s', process.env.DB_USER, process.env.DB_PASS, process.env.DB_HOST, process.env.DB_PORT, process.env.DB_NAME;
+
 module.exports.connections = {
 
   /***************************************************************************
@@ -29,7 +31,6 @@ module.exports.connections = {
   * Run: npm install sails-mongo                                             *
   *                                                                          *
   ***************************************************************************/
-  var dbUrl = 'mongodb://%s:%s@%s:%s/%s', process.env.DB_USER, process.env.DB_PASS, process.env.DB_HOST, process.env.DB_PORT, process.env.DB_NAME;
   hunaMongodbServer: {
     adapter: 'sails-mongo',
     url: dbUrl
