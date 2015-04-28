@@ -31,6 +31,7 @@ module.exports = {
       type: 'string',
       minLength: 6,
       notEmpty: true,
+      unique: true,
       required: true
     },
 
