@@ -10,7 +10,11 @@ module.exports = {
     User.create(req.body).exec(function(err, user){
       if (err) {
         console.log('user create error', err);
-        res.status(409).json({ error: 'user create error', err: err });
+        if (err.error === 'E_UNKNOWN')
+          res.status(409).json({ error: 'User already exixsts' });
+        else
+          res.status(400).json({ error: 'User create error', err: err });
+
       }
       else res.status(200).json({ user: user });
     });
