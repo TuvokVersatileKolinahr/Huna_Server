@@ -12,16 +12,6 @@ module.exports = {
     return hashed;
   },
 
-  /**
-   * Lifecycle Callbacks
-   */
-  beforeValidate: function(attrs, next) {
-    User.findOne({username: attrs.username}).exec(function (err, record) {
-      uniqueUser = !err && !record;
-      next();
-    });
-  },
-
   beforeCreate: function (attrs, next) {
     attrs.password = this.hash_string(attrs.password);
     // delete attrs['retypepassword'];
@@ -41,8 +31,7 @@ module.exports = {
       type: 'string',
       minLength: 6,
       notEmpty: true,
-      unique: true,       // Creates a unique index in MongoDB
-      uniqueUser: true,   // Makes sure there is no existing record with this username in MongoDB
+      unique: true,
       required: true
     },
 
