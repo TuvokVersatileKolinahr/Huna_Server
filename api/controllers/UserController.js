@@ -9,12 +9,18 @@ module.exports = {
   create: function(req, res) {
     User.create(req.body).exec(function(err, user){
       if (err) {
-        console.log('user create error', err);
-        if (err.error === 'E_UNKNOWN')
-          res.status(409).json({ error: 'User already exixsts' });
+        console.log("err.code", err.code);
+        if (err.code === 'E_VALIDATION') {
+          for (var i = err.invalidAttributes.username.length - 1; i >= 0; i--) {
+            if (err.invalidAttributes.username[i].rule === 'uniqueUser') {
+              err.status = 409;
+              err.summary = 'already exixsts';
+            }
+          };
+          res.status(err.status).json({ error: err.model + ' ' + err.summary, invalidAttributes: err.invalidAttributes });
+        }
         else
-          res.status(400).json({ error: 'User create error', err: err });
-
+          res.status(500).json({ err: err });
       }
       else res.status(200).json({ user: user });
     });
