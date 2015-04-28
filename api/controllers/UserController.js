@@ -8,7 +8,10 @@
 module.exports = {
   create: function(req, res) {
     User.create(req.body).exec(function(err, user){
-      if (err) res.status(409).json({ error: 'user create error' });
+      if (err) {
+        console.log("user already exist", err);
+        res.status(409).json({ error: 'user create error' });
+      }
       else res.status(200).json({ user: user });
     });
   },
