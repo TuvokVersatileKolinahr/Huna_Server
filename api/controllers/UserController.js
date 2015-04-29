@@ -14,13 +14,15 @@ module.exports = {
           for (var i = err.invalidAttributes.username.length - 1; i >= 0; i--) {
             if (err.invalidAttributes.username[i].rule === 'uniqueUser') {
               err.status = 409;
-              err.summary = 'already exixsts';
+              err.summary = 'Error creating user';
             }
           };
           res.status(err.status).json({ error: err.model + ' ' + err.summary, invalidAttributes: err.invalidAttributes });
         }
-        else
-          res.status(500).json({ err: err });
+        else {
+          console.log("Create user failed", err);
+          res.status(500).json({ error: "Error creating user" });
+        }
       }
       else res.status(200).json({ user: user });
     });
@@ -29,7 +31,10 @@ module.exports = {
   logout: function(req, res) {
     var accessToken = req.get('Authorization').split(" ")[1];
     User.findOne( { token: accessToken }, function(err, user) {
-      if (err) res.status(500).json({ error: 'DB error' });
+      if (err) {
+        console.log("Find user on logout failed.", err);
+        res.status(500).json({ error: 'DB error' });
+      }
       else {
         delete user.token;
         console.log("logged out user", user);
@@ -43,7 +48,10 @@ module.exports = {
   // var bcrypt = require('bcrypt');
     User.findOne({ username: req.body.username }).exec(function (err, user) {
       // console.log("user", user);
-      if (err) res.status(500).json({ error: 'DB error' });
+      if (err) {
+        console.log("Find user on login failed.", err);
+        res.status(500).json({ error: 'DB error' });
+      }
       else
         if (user) {
           // compare the hashed password in the db with the one in the form
@@ -59,18 +67,19 @@ module.exports = {
               {token: user.token, last_login: user.last_login}
             ).exec(function afterwards(err,updated){
               if (err) {
-                res.status(500).json({ err: err });
+                console.log("Update on login failed.", err);
+                res.status(500).json({ error: 'DB error' });
                 return;
               }
               res.status(200).json({ user: user });
             });
           } else {
             // invalid password
-            res.status(422).json({ error: 'Invalid password' });
+            res.status(422).json({ error: 'Error signing in' });
           }
         } else {
           // user not found
-          res.status(404).json({ error: 'User not found' });
+          res.status(404).json({ error: 'Error signing in' });
         }
     });
   }
