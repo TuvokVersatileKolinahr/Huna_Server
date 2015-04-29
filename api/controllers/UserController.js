@@ -53,8 +53,17 @@ module.exports = {
 
             user.token = hat();
             user.last_login = new Date().toISOString();
-            user.save();
-            res.status(200).json({ user: user });
+            //update user in the database
+            User.update(
+              {username: user.username},
+              {token: user.token, last_login: user.last_login}
+            ).exec(function afterwards(err,updated){
+              if (err) {
+                res.status(500).json({ err: err });
+                return;
+              }
+              res.status(200).json({ user: user });
+            });
           } else {
             // invalid password
             res.status(422).json({ error: 'Invalid password' });
