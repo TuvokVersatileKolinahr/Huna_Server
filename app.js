@@ -18,6 +18,9 @@
  * `node app.js --silent --port=80 --prod`
  */
 
+// As early as possible in your application, require and load dotenv.
+require('dotenv').load();
+
 // Ensure we're in the project directory, so relative paths work as expected
 // no matter where we actually lift from.
 process.chdir(__dirname);
