@@ -32,6 +32,7 @@ reports
 
 # local dir for public
 .tmp
+dist
 
 # sublime files
 *.sublime-project
