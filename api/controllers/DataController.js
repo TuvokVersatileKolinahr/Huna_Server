@@ -9,7 +9,14 @@ module.exports = {
   
   forhost: function(req, res) {
     var MongoClient = require('mongodb').MongoClient;
-    var url = 'mongodb://localhost:27017/huna-dev';
+
+    //TODO: this is mockdata directly from the mongo database. It should be replaced by real data.
+    var url = 'mongodb://';
+    if (process.env.DB_USER) {
+      url = url + process.env.DB_USER+':'+process.env.DB_PASS+'@';
+    }
+    url = url + process.env.DB_HOST+':'+process.env.DB_PORT+'/'+process.env.DB_NAME
+
     MongoClient.connect(url, function(err, db) {
         var collection = db.collection('mockdata');
 
