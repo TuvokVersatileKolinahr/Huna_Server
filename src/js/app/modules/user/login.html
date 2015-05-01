@@ -1,0 +1,44 @@
+
+	<div class="page-header"></div>
+
+	 <form class="form user-module" name="form" ng-submit="login()" novalidate> 
+
+        <header>
+            <h1>Login</h1>
+        </header> 
+
+        <div class="form-error" ng-show="error">
+            Error signing in. Please try again...
+        </div> 
+        
+        <div class="field">
+            <label for="username">Username</label> 
+            <input type="text" id="username" name="username" placeholder="Your username" autocomplete="off" ng-model="login.username" required> 
+
+            <div ng-show="form.$submitted || form.username.$dirty" class="error">
+              <span ng-show="form.username.$error.required">Username is required.</span>
+            </div>
+        </div> 
+
+        <div class="field">
+            <label for="password">Password</label> 
+            <input type="password" id="password" name="password" placeholder="password" autocomplete="off" ng-model="login.password" required> 
+
+             <div ng-show="form.$submitted || form.password.$dirty" class="error">
+              <span ng-show="form.password.$error.required">Password is required.</span>
+            </div>
+        </div>
+
+        <div class="field buttons">
+        	<a class="cancel" href="#/">Cancel</a>
+            <button class="btn-blue" type="submit" ng-disabled="form.$invalid">Login</button>
+        </div>
+
+        <p class="secundary-text">
+            Dont't have an account? <a href="#user/register" class="fl">Sign up</a> for a new account.
+        </p>
+        <p class="secundary-text">
+             <a href="/#/user/password">Forgot password</a>
+        </p>
+
+    </form>

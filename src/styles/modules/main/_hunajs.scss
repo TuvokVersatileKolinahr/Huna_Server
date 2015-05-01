@@ -1,0 +1,97 @@
+section.hunajs{
+  background: $background-color url(../img/smoke-white.png) no-repeat 0 0;
+  background-attachment: fixed;
+  background-size: cover;
+  color: $font-color;
+  font-size: 1.6em;
+  height: 100%;
+  padding: 2% 10%;
+  transition: background-color 2s ease-in 0s;
+
+  @include max-tablet{
+    background-color: rgba(0, 128, 0, .8); // green
+    font-size: 1.4em;
+  }
+  @include max-small-tablet{
+    background-color: rgba(0, 0, 255, .5); // blue
+    font-size: 1.2em;
+  }
+  @include max-phone{
+    background-color: rgba(255, 0, 0, .8); // red
+    font-size: 1em;
+  }
+
+  .callout{
+    text-align: center;
+    height: 100%;
+    position: relative;
+
+    @include max-small-tablet{
+      height: auto;
+      padding-top: 2em;
+    }
+
+    .call-to-action{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      @include max-small-tablet{
+        position: static;
+        transform: none;
+      }
+
+      h1.title{
+        font-size: 4em;
+        font-weight: bold;
+      }
+      h2.subtitle{
+        font-size: 1.2em;
+        margin-bottom: .8em;
+      }
+      .btn-register{
+        background: transparent;
+        border: 2px solid $font-color;
+        border-radius: 3px;
+        color: $font-color;
+        font-family: "Open Sans";
+        font-size: 1.4em;
+        padding: 0.3em 1em;
+        text-shadow: none;
+        transition: all .3s ease-in 0s;
+
+        &:hover{
+          background: $font-color;
+          border: 2px solid $background-color;
+          color: $background-color;
+          box-shadow: 0 0 0 1px $font-color;
+
+          // Match background colors of section.hunajs
+          @include max-tablet{
+            color: rgba(0, 128, 0,.8); // green
+          }
+          @include max-small-tablet{
+            color: rgba(0, 0, 255, .5); // blue
+          }
+          @include max-phone{
+            color: rgba(255, 0, 0, .8); // red
+          }
+        }
+      }
+      .login{
+        font-size: .6em;
+        margin-top: 1rem;
+
+        a{
+          color: $font-color-light;
+          &:hover{
+            border-bottom-color: $font-color-light;
+          }
+        }
+      }
+    }
+    
+  }
+}
+
+

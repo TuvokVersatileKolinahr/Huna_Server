@@ -1,0 +1,44 @@
+
+	<div class="page-header"></div>
+
+	<section class="error-page">
+
+		<header>
+			<h1> Error page </h1>
+		</header>
+
+		<div class="description">
+			This page is used for testing different kinds of errors. When pressing the buttons below, errors are produced and should be logged using the HunaJS system. <br />
+			Watch the console for a POST to HunaJs' interceptor.
+		</div>
+
+		<div class="row clearfix">
+			<div class="col-25">
+				<p>Handle parse error</p>
+			</div>
+			<div class="col-25">
+				<span>{{timeout}}</span> <button class="btn-red btn-parse-error" ng-click="parseError()" ng-disabled="busy">Send parse error</button> 
+			</div>
+		</div>
+
+		<div class="row clearfix">
+			<div class="col-25">
+				<p>Handle syntax error</p>
+			</div>
+			<div class="col-25">
+				<span>{{timeout}}</span> <button class="btn-red btn-syntax-error" ng-click="syntaxError()" ng-disabled="busy">Send syntax error</button> 
+			</div>
+		</div>
+
+		<div class="row clearfix">
+			<div class="col-25">
+				<p> Handle uncaught exceptions</hp>
+			</div>
+			<div class="col-25">
+				<span>{{timeout}}</span> <button class="btn-red btn-exeption" ng-click="uncaughtException()" ng-disabled="busy">Send exception</button> 
+			</div>
+		</div>
+
+
+
+	</section>

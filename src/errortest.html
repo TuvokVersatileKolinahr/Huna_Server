@@ -1,0 +1,97 @@
+<html lang="en" >
+  <head>
+  <title>Error test</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      /**
+       * 
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+       */
+      (function(){
+
+        if (typeof window.huna === "undefined"){
+          window.huna = true;
+          try{
+
+            // get old error handler
+            var oldErrHandler = window.onerror;
+            window.onerror = function(err, script, line, col, cause){
+
+              // harvest as much information as we need...
+              var json = {
+                error: err,
+                script:   script,
+                line: line,
+                col: col,
+                cause: cause,
+                host: window.location.host,
+                url: window.location.href,
+                username: window.location.username,
+                password: window.location.password,
+                navigator: {
+                  appname: window.navigator.appName,
+                  appversion: window.navigator.appVersion,
+                  language: window.navigator.language,
+                  cpu: window.navigator.oscpu,
+                  platform: window.navigator.plaform,
+                  product: window.navigator.product,
+                  productsub: window.navigator.productSub,
+                  useragent: window.navigator.userAgent,
+                  availHeight: window.screen.availHeight,
+                  availWidth: window.screen.availWidth
+                }
+              };
+
+              var r = new XMLHttpRequest();
+              r.onabort = function(e){
+                console.log("onabort");
+                console.log("XHR failed" + this.status + " - " + this.response);
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+              };
+              r.onerror = function(e){
+                console.log("onerror");
+                console.log("XHR failed" + this.status + " - " + this.response);
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+              };
+              r.ontimeout = function(e){
+                console.log("ontimeout");
+                console.log("XHR timeout" + this.status + " - " + this.response);
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+              };
+              r.onreadystatechange = function(e) {
+                if (this.readyState == 4){
+                  console.log("XHR succeeded" + this.status + " - " + this.response);
+                }
+              };
+              r.open('post', 'http://huna.tuvok.nl/interceptor', true);
+              r.setRequestHeader('Content-type','application/json; charset=utf-8');
+              r.send(JSON.stringify(json));
+
+              console.log("error: " + err, script, line);
+            };
+
+          }catch(err){
+            console.info("huna.js failed due to: ");
+            if(typeof err === "string") { console.info(err);}else{console.dir(err);}
+          }
+        }
+
+        return false;
+
+      })();
+    </script>
+    <script type="text/javascript">
+      (function(){
+        throw new Error("Something bad happened.");
+      })();
+    </script>
+  </body>
+</html>

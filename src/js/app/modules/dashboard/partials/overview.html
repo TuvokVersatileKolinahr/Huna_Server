@@ -1,0 +1,54 @@
+<h1> Dashboard for {{selected.host}} {{test}}</h1>
+
+      <div class="chart">
+        <div id="mainChart"></div>
+      </div>
+
+
+      <div class="row counters clearfix">
+
+        <div class="col-33 error-count">
+          <h3>{{errorTotals}}</h3>
+          <p>errors</p>
+        </div>
+        <div class="col-33 warning-count">
+          <h3>{{warningTotal}}</h3>
+          <p>warnings</p>
+        </div>
+        <div class="col-33 info-count">
+          <h3>{{infoTotal}}</h3>
+          <p>infos</p>
+        </div>
+
+      </div>
+ 
+      <div class="row clearfix">
+        <div class="col-25">
+          <div class="chart">
+            <div id="relationChart"></div>
+          </div>
+        </div>
+        <div class="col-75">
+          <h3> Top 10 errors</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>file</th>
+                <th>line</th>
+                <th>column</th>
+                <th>ip</th>
+                <th>occurences</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="data in dataset">
+              <tr>
+                  <td>{{ data.errorComponent }}</td>
+                  <td>{{ data.line }}</td>
+                  <td>{{ data.column }}</td>
+                  <td>{{ data.ip }}</td>
+                  <td>{{ data.occurrences }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>

@@ -1,0 +1,49 @@
+section.features{
+
+  margin: 150px 0;
+
+  .row{
+    @extend .clearfix;
+  }
+ 
+  $img-size: 128px;
+  .feature{
+    background-repeat: no-repeat;
+    background-size: $img-size;
+    background-position: center top;
+    margin-bottom: 3rem;
+    padding-top: $img-size;
+    text-align: center;
+
+     @include max-small-tablet{
+      width: 100%;
+    }
+
+    h3{
+      font-size: 2.4em;
+    }
+    .summary{
+      font-size: 1.4em;
+      padding: 0 2rem;
+    }
+
+    &.errors{
+      background-image: url('../img/errors.png');
+    }
+    &.charts{
+      background-image: url('../img/charts.png');
+    }
+    &.real-time{
+      background-image: url('../img/real-time.png');
+    }
+    &.cloud{
+      background-image: url('../img/cloud.png');
+    }
+    &.api{
+      background-image: url('../img/api.png');
+    }
+    &.bugs{
+      background-image: url('../img/bugs.png');
+    }
+  }
+}

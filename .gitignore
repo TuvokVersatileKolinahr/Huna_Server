@@ -27,6 +27,9 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
+# Reports
+reports
+
 # local dir for public
 .tmp
 

@@ -1,43 +1,89 @@
 {
-  "name": "rest-api-sails",
-  "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
-  "keywords": [],
+  "name": "hunaJS",
+  "version": "0.0.1",
+  "description": "Huna aims to unveil the hidden data that is in your application. Errors become your source of the truth.",
+  "keywords": [
+    "gulp",
+    "angular",
+    "single page application",
+    "huna",
+    "errors"
+  ],
+  "scripts": {
+    "start": "node app.js",
+    "debug": "node debug app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TuvokVersatileKolinahr/Huna_Server/"
+  },
+  "author": [
+    {
+      "name": "Elger van Boxtel",
+      "email": "elgervb@gmail.com",
+      "url": "http://elgervanboxtel.nl"
+    },
+    {
+      "name": "Wouter Roosendaal",
+      "email": "tuvokki@gmail.com",
+      "url": "http://www.wouterroosendaal.nl"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/TuvokVersatileKolinahr/hunaJS/issues"
+  },
+  "settings": {
+    "src": "./src/",
+    "dist": "./dist/",
+    "views": "./views/",
+    "reports": "./reports",
+    "serverport": 4000
+  },
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^1.1.0",
-    "ejs": "~0.8.4",
-    "grunt": "0.4.2",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-coffee": "~0.10.1",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-cssmin": "~0.9.0",
-    "grunt-contrib-jst": "~0.6.0",
-    "grunt-contrib-less": "0.11.1",
-    "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-sails-linker": "~0.9.5",
-    "grunt-sync": "~0.0.4",
     "hat": "0.0.3",
     "include-all": "~0.1.3",
     "mongodb": "^2.0.27",
     "passport": "^0.2.1",
     "passport-http-bearer": "^1.0.1",
     "rc": "~0.5.0",
+    "ejs": "~0.8.4",
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
     "sails-mongo": "^0.10.5"
   },
-  "scripts": {
-    "start": "node app.js",
-    "debug": "node debug app.js"
-  },
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/wouter/rest-api-sails.git"
-  },
-  "author": "wouter",
-  "license": ""
+  "devDependencies": {
+    "browser-sync": "^1.9.1",
+    "del": "^1.0.0",
+    "express": "^4.10.4",
+    "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-cache": "^0.2.4",
+    "gulp-concat": "^2.4.2",
+    "gulp-doxx": "0.0.4",
+    "gulp-flatten": "0.0.4",
+    "gulp-if": "^1.2.5",
+    "gulp-imagemin": "^2.0.0",
+    "gulp-jshint": "^1.9.0",
+    "gulp-livereload": "^2.1.1",
+    "gulp-minify-css": "^0.3.13",
+    "gulp-ng-annotate": "^0.5.2",
+    "gulp-notify": "^2.0.1",
+    "gulp-plumber": "^0.6.6",
+    "gulp-rename": "^1.2.0",
+    "gulp-replace": "^0.5.0",
+    "gulp-sass": "^1.1.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-strip-debug": "^1.0.2",
+    "gulp-todo": "^2.2.1",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.4",
+    "jshint-stylish": "^1.0.0",
+    "q": "^1.2.0",
+    "yargs": "^1.3.3",
+    "proxy-middleware": "^0.11.0"
+  }
 }
