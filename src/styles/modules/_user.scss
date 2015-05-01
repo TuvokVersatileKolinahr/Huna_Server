@@ -1,0 +1,88 @@
+/*
+ * All styles for user actions, like register, sign up / in
+ */
+.page-header{
+	background: rgba(59,19,69, 1);
+	height: 150px;
+
+	@include phone{
+		height: 25px;
+	}
+}
+
+.user-module{
+	background-color: rgba(255,255,255,.6);
+	font-size: 1.6em;
+	margin: 0 auto;
+	padding: 0 25px;
+	position: relative;
+	top: -7rem;
+	width: 50%;
+
+	header{
+		font-size: 1.2em;
+		margin-bottom: 48px;
+		text-align: center;
+	}
+	p{
+		font-size: .8em;
+	}
+
+	.field{
+
+		label{
+			font-weight: 200;
+			padding: .5em; // same as input
+			width: 25%;
+		}
+
+		input{
+			font-size: .8em;
+			margin: .2em 0;
+			padding: .5em; // same as label	
+			width: 75%;
+		}
+
+		.error{
+			color: #666;
+			font-size: .6em;
+			margin-left: 25%;
+		}
+
+		&.buttons{
+			margin: 50px 0;
+			text-align: right;
+		}
+	}
+	.secundary-text{
+		font-size: .6em;
+	}
+
+	.divider{
+		color: #666;
+		font-style: italic;
+		margin: 25px 50px;
+	}
+
+	.cancel{
+		font-size: .8em;
+		font-weight: 200;
+		margin: 8px 25px 8px 0;
+	}
+
+	@include max-tablet{
+		font-size: 1.4em;
+		top: -6rem;
+		width: 75%;
+	}
+	@include max-small-tablet{
+		font-size: 1.2em;
+		top: -5rem;
+		width: 100%;
+	}
+	@include phone{
+		font-size: 1em;
+		padding: 0 5px;
+		position: static;
+	}
+}

@@ -1,0 +1,28 @@
+
+    <div class="content">
+      <h1> Add new host </h1>
+
+        <form class="form host-module" name="form" ng-submit="add_host()" novalidate> 
+
+            <div class="form-error" ng-show="error">
+                {{error}}
+            </div> 
+            
+            <div class="field">
+                <label for="hostname">Hostname</label> 
+                <span>https://</span><input type="text" pattern="([a-zA-Z0-9]+\.)?[a-zA-Z0-9]+\.[a-zA-Z0-9]+" id="hostname" name="hostname" placeholder="Your hostname" autocomplete="off" ng-model="host.hostname" required autofocus> 
+
+                <div ng-show="form.$submitted || form.hostname.$touched" class="error">
+                  <span ng-show="form.hostname.$error.required">Please fill in the desired hostname.</span>
+                  <span ng-show="form.hostname.$error.pattern">The hostname must be a valid host, eg hostname.com</span>
+                </div>
+            </div> 
+
+            <div class="field buttons">
+                <a class="cancel" ng-click="cancel()">Cancel</a>
+                <button class="btn-blue" type="submit" ng-disabled="form.$invalid">Add</button>
+            </div>
+
+        </form>
+
+    </div>

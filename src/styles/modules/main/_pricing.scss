@@ -1,0 +1,110 @@
+
+section.pricing{
+
+  background: $font-color;
+  min-height: 100%;
+  padding: 2rem;
+  text-align: center;
+
+  @include max-phone{
+    margin: 10px;
+  }
+
+  @include max-desktop{
+    font-size: 1em;
+  }
+  @include max-tablet{
+    font-size: .8em;
+  }
+  @include max-small-tablet{
+    font-size: .8em;
+  }
+  @include max-phone{
+    font-size: .8em;
+    padding: .2rem;
+  }
+
+  h1{
+    font-size: 3em;
+    margin: 1em 0;
+
+    @include max-phone{
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+  }
+  
+  .pricing-row{
+    margin: 0 auto;
+
+    .price-card{
+      border: 1px solid complement($background-color);
+      border-radius: 8px;
+      display: inline-block;
+      font-size: 1.6em;
+      margin: 0 2% 2%;
+      width: 28.333333%;
+      max-width: 350px;
+
+      @include max-desktop{
+        width: 46%;
+      }
+      @include max-small-tablet{
+        width: 100%;
+      }
+      @include max-phone{
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 10%;
+      }
+
+      // prevent scaling to 100% when going to smaller screens
+      .col-50{
+        width: 50%;
+      }
+
+      header{
+        background-color: complement($background-color);
+        color: $font-color;
+        font-size: 2em;
+        font-weight: 200;
+        margin-bottom: .7em;
+        padding: .2em 0 .4em;
+
+        @include max-phone{
+          margin-bottom: 0;
+        }
+      }
+
+      .body{
+        padding: .8em;
+
+        .col1{
+          text-align: right;
+        }
+        .col2{
+          text-align: left;
+        }
+      }
+
+      footer{
+        margin: 2em 0 1em;
+
+        @include max-phone{
+          margin: 10px 0 0;
+        }
+      }
+
+      .btn-signup{
+        background: complement($background-color);
+        border-color: #445F21;
+        color: $font-color-light;
+        &:hover{
+          background: darken(complement($background-color), 5%);
+        }
+      }
+    }
+
+  }
+
+}
