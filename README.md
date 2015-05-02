@@ -31,15 +31,15 @@ There are three main endpoints:
 ###**Hosts**
 
 ####Create
-  curl -i -X POST -d 'name=tuvok.nl' http://localhost:1337/api/host
-  curl -i -X POST -d 'name=whatever.com' http://localhost:1337/api/host
+	curl -i -X POST -d 'name=tuvok.nl' http://localhost:1337/api/host
+	curl -i -X POST -d 'name=whatever.com' http://localhost:1337/api/host
 ####Retrieve
-  curl -i -X GET http://localhost:1337/api/host
-  curl -i -X GET http://localhost:1337/api/host/5533768de79e5dc33818d20a
+	curl -i -X GET http://localhost:1337/api/host
+	curl -i -X GET http://localhost:1337/api/host/5533768de79e5dc33818d20a
 ####Update
-  curl -i -X PUT -d 'name=Joe' http://localhost:1337/api/host/5533768de79e5dc33818d20a
+	curl -i -X PUT -d 'name=Joe' http://localhost:1337/api/host/5533768de79e5dc33818d20a
 ####Delete
-  curl -i -X DELETE http://localhost:1337/api/host/5533768de79e5dc33818d20a
+	curl -i -X DELETE http://localhost:1337/api/host/5533768de79e5dc33818d20a
 
 ###**Data**
-  curl -i -X GET http://localhost:1337/api/data/forhost?name=elgervanboxtel.nl
+	curl -i -X GET http://localhost:1337/api/data/forhost?name=elgervanboxtel.nl
