@@ -17,9 +17,6 @@ app.controller('DashboardController', function($scope, $location, DashboardServi
       DashboardService.getData(selectedHost.name).then(function(returnobject){
         $scope.dataset = returnobject.data.errordata;
       });
-    } else {
-      // there is no selected host
-      $location.url("/dashboard/" + $scope.hosts[0]);
     }
   });
 
@@ -92,6 +89,8 @@ app.controller('DashboardController', function($scope, $location, DashboardServi
   $scope.select = function(host){
     $scope.selected = host;
   };
+  // there is no selected host
+  $location.url("/dashboard/" + $scope.hosts[0]);
 
   /**
    * Calculate the totals for errors / warnings and info based on the data provided
