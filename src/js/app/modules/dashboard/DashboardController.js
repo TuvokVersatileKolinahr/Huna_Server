@@ -1,4 +1,4 @@
-app.controller('DashboardController', function($scope, DashboardService, ChartService){
+app.controller('DashboardController', function($scope, $location, DashboardService, ChartService){
 
   var mainChart, relationsChart;
 
@@ -17,6 +17,9 @@ app.controller('DashboardController', function($scope, DashboardService, ChartSe
       DashboardService.getData(selectedHost.name).then(function(returnobject){
         $scope.dataset = returnobject.data.errordata;
       });
+    } else {
+      // there is no selected host
+      $location.url("/dashboard/" + $scope.hosts[0]);
     }
   });
 
