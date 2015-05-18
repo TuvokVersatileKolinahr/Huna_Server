@@ -34,7 +34,7 @@ app.controller('RegisterController', function($scope, $location, $http){
         document.getElementById('username').scrollIntoView();
       }
       else{
-        $scope.error = "Registering the user " + data.username + " failed. Please try again later." ;
+        $scope.error = "Registering the user " + data.user.username + " failed. Please try again later." ;
         console.error($scope.error);
       }
     });
