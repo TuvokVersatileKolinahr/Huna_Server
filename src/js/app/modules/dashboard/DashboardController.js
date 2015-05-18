@@ -87,6 +87,7 @@ app.controller('DashboardController', function($scope, $location, DashboardServi
    * Mark a host as selected
    */
   $scope.select = function(host){
+    console.log('Select host ' + host.name);
     $scope.selected = host;
   };
 

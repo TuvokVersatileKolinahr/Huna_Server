@@ -57,6 +57,7 @@ var app = angular.module('HunaJS', ['ui.router', 'angular-cache'])
     })
     .state('dashboard.host', {
       url: '^/dashboard/:hostname',
+      controller: 'DashboardController',
       templateUrl: '/js/app/modules/dashboard/partials/overview.html',
       authenticate: true
     })
