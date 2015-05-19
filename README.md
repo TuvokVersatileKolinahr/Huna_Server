@@ -1,6 +1,5 @@
 # hunaJS
 
-[![Join the chat at https://gitter.im/TuvokVersatileKolinahr/Huna_Server](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TuvokVersatileKolinahr/Huna_Server?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 HunaJS is a service for collecting data from your javascript fromtend applications.
 
 ## Development mode
@@ -45,3 +44,5 @@ There are three main endpoints:
 
 ###**Data**
 	curl -i -X GET http://localhost:1337/api/data/forhost?name=elgervanboxtel.nl
+
+For questions and suggestions you can find us @ [![Join the chat at https://gitter.im/TuvokVersatileKolinahr/Huna_Server](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TuvokVersatileKolinahr/Huna_Server?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
