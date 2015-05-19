@@ -1,11 +1,12 @@
 <h1> Dashboard for {{selected}}</h1>
 
       <div class="chart">
-        <div id="mainChart"></div>
+        <div id="mainChart" ng-hide=nodata></div>
+        <h2 class="nodata" ng-show=nodata>No data available</h1>
       </div>
 
 
-      <div class="row counters clearfix">
+      <div class="row counters clearfix" ng-hide=nodata>
 
         <div class="col-33 error-count">
           <h3>{{errorTotals}}</h3>
@@ -22,7 +23,7 @@
 
       </div>
  
-      <div class="row clearfix">
+      <div class="row clearfix" ng-hide=nodata>
         <div class="col-25">
           <div class="chart">
             <div id="relationChart"></div>

@@ -62,6 +62,8 @@ app.controller('DashboardController', function($scope, $location, $stateParams, 
 
   function loadData(){
     ChartService.getData($scope.selected).then(function(data){
+
+      if (data && angular.isArray(data.columns)){
         
         // set chart data
         mainChart.load(data);
@@ -69,11 +71,16 @@ app.controller('DashboardController', function($scope, $location, $stateParams, 
 
         // calculate totals
         calculateTotals(data);
-      });
 
-      DashboardService.getData($scope.selected).then(function(obj){
-        $scope.dataset = obj.data[0].errordata;
-      });
+      } else {
+        // no data available
+        $scope.nodata = true;
+      }
+    });
+
+    DashboardService.getData($scope.selected).then(function(obj){
+      $scope.dataset = obj.data[0].errordata;
+    });
   }
 
 
