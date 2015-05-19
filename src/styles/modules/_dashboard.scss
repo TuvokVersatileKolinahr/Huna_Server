@@ -72,6 +72,13 @@
     padding: 0 1rem 1rem;
   }
 
+  .chart .nodata{
+    color: $font-color-gray;
+    text-shadow: 1px 1px $font-color-light;
+    font-size: 3em;
+    text-align: center;
+  }
+
   .counters{
     margin: 2em 0;
     text-align: center;
