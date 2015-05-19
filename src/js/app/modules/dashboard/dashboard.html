@@ -9,7 +9,7 @@
       <h3>My hosts</h3>
       <ul class="hosts">
         <li ng-repeat="host in hosts">
-          <a ng-class="{selected: host==selected}" ui-sref="dashboard.host({hostname:host.name})" ng-click="select(host)">{{host.name}}</a>
+          <a ng-class="{selected: host.name==selected}" ui-sref="dashboard.host({hostname:host.name})" ng-click="select(host)">{{host.name}}</a>
         </li>
       </ul>
       <a ui-sref="dashboard.addhost" class="btn-red add-host">add host</a>

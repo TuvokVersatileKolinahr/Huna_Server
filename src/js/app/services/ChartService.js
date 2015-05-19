@@ -22,6 +22,7 @@ app.service('ChartService', function($q){
   },
   getData = function(host){
     console.log("ChartService: Load data for host " + host);
+    
     return $q(function(resolve, reject) {
       resolve({columns: data[host]});
     });

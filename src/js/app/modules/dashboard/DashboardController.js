@@ -1,11 +1,67 @@
-app.controller('DashboardController', function($scope, $location, DashboardService, ChartService){
+app.controller('DashboardController', function($scope, $location, $stateParams, DashboardService, ChartService){
 
   var mainChart, relationsChart;
+  $scope.selected = $stateParams.hostname;
 
-  // update data when selected host has been changed
-  $scope.$watch('selected', function(selectedHost, oldValue){
-    if (selectedHost) {
-      ChartService.getData(selectedHost.name).then(function(data){
+  if ($scope.selected){
+    loadData();
+  }
+  else{
+    DashboardService.getHosts().then(function(obj){
+      $scope.hosts = obj.data;
+      if(obj.data && angular.isArray(obj.data)){
+        $scope.selected = obj.data[0].name;
+        $location.url("/dashboard/" + $scope.selected); 
+      }
+    });
+  }
+
+  /**
+   * Mark a host as selected
+   */
+  $scope.select = function(host){
+    if (host){
+      console.log('Select host ' + host.name);
+      $scope.selected = host.name;
+    }
+  };
+
+  // TODO: Redirect to a host when none is selected #29
+  // there is no selected host
+  // $location.url("/dashboard/" + $scope.hosts[0]);
+
+  /**
+   * Calculate the totals for errors / warnings and info based on the data provided
+   * The totals will be set on the scope
+   */
+  function calculateTotals(data){
+    if (data && angular.isArray(data.columns)){
+      copy = angular.copy(data.columns); // copy array, so we can change it 
+      copy.forEach(function(item,i){
+        var type = item.shift(),
+        total = item.reduce(function(prev, current) {
+          return prev+current;
+        });
+        
+        switch(type){
+          case 'errors':
+            $scope.errorTotals = total;
+            break;
+          case 'warnings':
+            $scope.warningTotal = total;
+            break;
+          case 'info':
+            $scope.infoTotal = total;
+            break;
+          default:
+            console.error("No such data: " + info);
+        }
+      });
+    }
+  }
+
+  function loadData(){
+    return ChartService.getData($scope.selected).then(function(data){
         
         // set chart data
         mainChart.load(data);
@@ -13,22 +69,15 @@ app.controller('DashboardController', function($scope, $location, DashboardServi
 
         // calculate totals
         calculateTotals(data);
+
+        DashboardService.getData($scope.selected).then(function(dataset){
+          $scope.dataset = dataset;
+        });
       });
-      DashboardService.getData(selectedHost.name).then(function(returnobject){
-        $scope.dataset = returnobject.data.errordata;
-      });
-    }
-  });
+  }
 
 
-  DashboardService.getHosts().then(function(returnobject){
-    $scope.hosts = returnobject.data;
-    if(returnobject.data && angular.isArray(returnobject.data)){
-      $scope.selected = returnobject.data[0];
-    }
-  });
-
-  // initialize main chart, data will be loaded later
+   // initialize main chart, data will be loaded later
   mainChart = c3.generate({
     bindto: '#mainChart',
     data: {
@@ -82,47 +131,5 @@ app.controller('DashboardController', function($scope, $location, DashboardServi
       }
     }
   });
-
-  /**
-   * Mark a host as selected
-   */
-  $scope.select = function(host){
-    console.log('Select host ' + host.name);
-    $scope.selected = host;
-  };
-
-  // TODO: Redirect to a host when none is selected #29
-  // there is no selected host
-  // $location.url("/dashboard/" + $scope.hosts[0]);
-
-  /**
-   * Calculate the totals for errors / warnings and info based on the data provided
-   * The totals will be set on the scope
-   */
-  function calculateTotals(data){
-    if (data && angular.isArray(data.columns)){
-      copy = angular.copy(data.columns); // copy array, so we can change it 
-      copy.forEach(function(item,i){
-        var type = item.shift(),
-        total = item.reduce(function(prev, current) {
-          return prev+current;
-        });
-        
-        switch(type){
-          case 'errors':
-            $scope.errorTotals = total;
-            break;
-          case 'warnings':
-            $scope.warningTotal = total;
-            break;
-          case 'info':
-            $scope.infoTotal = total;
-            break;
-          default:
-            console.error("No such data: " + info);
-        }
-      });
-    }
-  }
 
 });
