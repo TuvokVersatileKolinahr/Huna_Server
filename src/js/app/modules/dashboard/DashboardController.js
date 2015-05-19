@@ -61,7 +61,7 @@ app.controller('DashboardController', function($scope, $location, $stateParams, 
   }
 
   function loadData(){
-    return ChartService.getData($scope.selected).then(function(data){
+    ChartService.getData($scope.selected).then(function(data){
         
         // set chart data
         mainChart.load(data);
@@ -69,10 +69,10 @@ app.controller('DashboardController', function($scope, $location, $stateParams, 
 
         // calculate totals
         calculateTotals(data);
+      });
 
-        DashboardService.getData($scope.selected).then(function(dataset){
-          $scope.dataset = dataset;
-        });
+      DashboardService.getData($scope.selected).then(function(obj){
+        $scope.dataset = obj.data[0].errordata;
       });
   }
 
