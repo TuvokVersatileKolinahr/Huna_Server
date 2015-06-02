@@ -3,6 +3,11 @@
 HunaJS is a service for collecting data from your javascript fromtend applications.
 
 ## Development mode
+
+First, make sure you've installed nodemon
+		
+		npm install -g nodemon
+
 Right now we're not in production so the only way to run this is in development mode. Start the server:
 
     nodemon -w api -w config 
