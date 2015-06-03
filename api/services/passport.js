@@ -11,10 +11,10 @@ var passport = require('passport'),
  */
 passport.use('bearer', new BearerStrategy(
   function(accessToken, done) {
-    console.log("accessToken", accessToken);
+    // console.log("accessToken", accessToken);
     User.findOne( { token: accessToken }, function(err, user) {
       if (err) return done(err);
-      console.log("user", user);
+      // console.log("Request by user: ", user.username);
       var info = { scope: '*' };
       done(null, user, info);
     });
