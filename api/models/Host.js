@@ -18,10 +18,10 @@ module.exports = {
     name : {
       type: 'string',
       required: true,
-      unique: true,
-      owner:{
-          model:'user'
-      }
+      unique: true
+    },
+    owner:{
+      model:'user'
     }
   }
 };
