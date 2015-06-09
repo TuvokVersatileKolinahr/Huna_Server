@@ -29,6 +29,9 @@ module.exports.policies = {
   // '*': true,
 
   // Policy for all actions of a specific controller
+  'HostController': {
+      '*': ['collectParams', 'authenticated']
+  },
   'DataController': {
       '*': ['collectParams', 'authenticated']
   },
