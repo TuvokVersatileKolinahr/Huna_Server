@@ -7,16 +7,16 @@
 
 module.exports = {
   create: function(req, res) {
-    var accessToken = req.get('Authorization').split(" ")[1];
-    User.findOne( { token: accessToken }, function(err, user) {
+    console.log("User: ", req.user);
+    var newhost = req.body;
+    newhost.owner = req.user;
+    Host.create(newhost).exec(function(err, host){
       if (err) {
-        console.log("Find user on host create failed.", err);
-        res.status(500).json({ error: 'DB error' });
+          console.log("Create host failed", err);
+          res.status(500).json({ error: "Error creating host" });
+        }
       }
-      else {
-        console.log("create host for user", user);
-        res.status(200).json({ host: 'true' });
-      }
+      else res.status(200).json({ host: host });
     });
   }
 };
