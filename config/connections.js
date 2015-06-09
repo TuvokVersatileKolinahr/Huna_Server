@@ -25,4 +25,10 @@ module.exports.connections = {
     password: process.env.DB_PASS,
     database: process.env.DB_NAME
   },
+  localDiskDb: {
+    adapter: 'sails-disk'
+  },
+  memory: {
+    adapter: 'sails-memory'
+  }
 };

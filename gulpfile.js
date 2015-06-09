@@ -308,6 +308,63 @@ gulp.task('server', function(){
   gutil.log('Server started. Port', port,"baseDir",__dirname+"/"+settings.dist);
 });
 
+gulp.task('nodemon', function(cb) {
+  var nodemon = require('gulp-nodemon');
+
+  // We use this `called` variable to make sure the callback is only executed once
+  var called = false;
+  return nodemon({
+    script: 'app.js',
+    watch: ['app.js', 'api/**/*.*', 'config/**/*.*']
+  })
+  .on('start', function onStart() {
+    if (!called) {
+      cb();
+    }
+    called = true;
+  })
+  .on('restart', function onRestart() {
+
+    // Also reload the browsers after a slight delay
+    setTimeout(function reload() {
+      browserSync.reload({
+        stream: false
+      });
+    }, 500);
+  });
+});
+
+/**
+ * Task to start the backend servers.
+ * Depends on: backend-mongo, backend-server
+ */
+gulp.task('backend', ['backend-mongo', 'backend-server'], function () {});
+
+/**
+ * Task to start the backend mongo server
+ * should be running before the backend-server
+ */
+gulp.task('backend-mongo', function () {
+  var exec = require('child_process').exec;
+  exec('mongod', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    onError(err);
+  });
+});
+
+/**
+ * Task to start up the backend server
+ * run the mongo db first
+ */
+gulp.task('backend-server', function () {
+  var exec = require('child_process').exec;
+  exec('node app.js', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    onError(err);
+  });
+});
 
 /**
  * Task to start a server on port 4000 and used the live reload functionality.
