@@ -13,8 +13,15 @@ module.exports = {
     console.log("newhost", newhost);
     Host.create(newhost).exec(function(err, host){
       if (err) {
-        console.log("Create host failed", err);
-        res.status(500).json({ error: "Error creating host" });
+        if (err.originalError && err.originalError.code === 11000) {
+          err.status = 409;
+          err.summary = '11000 Error creating host';
+          res.status(err.status).json({ error: err.originalError.code, summary: err.summary });
+        }
+        else {
+          console.log("Create host failed", err.code);
+          res.status(500).json({ error: "Error creating host" });
+        }
       }
       else res.status(200).json({ host: host });
     });
