@@ -5,14 +5,21 @@ HunaJS is a service for collecting data from your javascript fromtend applicatio
 ## Development mode
 
 First, make sure you've installed nodemon
-		
-		npm install -g nodemon
 
-Right now we're not in production so the only way to run this is in development mode. Start the server:
+	npm install -g nodemon
 
-    nodemon -w api -w config 
+Right now we're not in production so the only way to run this is in development mode. Make sure you have mongodb running of provide configuration to run it elsewhere or configure a disk-db and start the server:
 
-and the frontend with the following command:
+    nodemon -w api -w config
+
+If you have mongo installed locally you can boot up the backend with gulp:
+
+    gulp bakcend
+
+will boot the local mongo (simply starts `mongod`).
+If you just want to start the server you can use `gulp backend-server` to boot without starting mongo.
+
+You can start the frontend with the following command:
 
     gulp start --dev
 
