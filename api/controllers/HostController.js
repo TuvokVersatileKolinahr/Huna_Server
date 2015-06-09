@@ -18,5 +18,17 @@ module.exports = {
       }
       else res.status(200).json({ host: host });
     });
+  },
+  find: function(req, res) {
+    Host.find({owner:req.user.id}).exec(function(err, hosts) {
+      if (err) {
+        console.log("error find hosts for ", req.user, err);
+        res.status(500).json({ error: "Error finding host" });
+      }
+      else {
+        console.log("hosts", hosts);
+        res.status(200).json({ hosts: hosts });
+      }
+    });
   }
 };
