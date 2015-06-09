@@ -8,9 +8,9 @@ app.controller('DashboardController', function($scope, $location, $stateParams, 
   }
   else{
     DashboardService.getHosts().then(function(obj){
-      $scope.hosts = obj.data;
-      if(obj.data && angular.isArray(obj.data)){
-        $scope.selected = obj.data[0].name;
+      $scope.hosts = obj.data.hosts;
+      if(obj.data.hosts && angular.isArray(obj.data.hosts)){
+        $scope.selected = obj.data.hosts[0].name;
         $location.url("/dashboard/" + $scope.selected); 
       }
     });
