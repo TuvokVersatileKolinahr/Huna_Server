@@ -15,7 +15,7 @@ module.exports = {
       if (err) {
         if (err.originalError && err.originalError.code === 11000) {
           err.status = 409;
-          err.summary = '11000 Error creating host';
+          err.summary = 'Another user already registered this host.';
           res.status(err.status).json({ error: err.originalError.code, summary: err.summary });
         }
         else {
