@@ -10,7 +10,7 @@
             
             <div class="field">
                 <label for="hostname">Hostname</label> 
-                <span>https://</span><input type="text" pattern="([a-zA-Z0-9]+\.)?[a-zA-Z0-9]+\.[a-zA-Z0-9]+" id="hostname" name="hostname" placeholder="Your hostname" autocomplete="off" ng-model="host.hostname" required autofocus> 
+                <span>https://</span><input type="text" pattern="([a-zA-Z0-9]+\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9]+" id="hostname" name="hostname" placeholder="Your hostname" autocomplete="off" ng-model="host.hostname" required autofocus> 
 
                 <div ng-show="form.$submitted || form.hostname.$touched" class="error">
                   <span ng-show="form.hostname.$error.required">Please fill in the desired hostname.</span>
