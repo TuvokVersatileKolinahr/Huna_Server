@@ -45,6 +45,7 @@ module.exports = {
   },
 
   login: function (req, res) {
+    console.log('receiced login for user ' + req.body.username);
   // var bcrypt = require('bcrypt');
     User.findOne({ username: req.body.username }).exec(function (err, user) {
       // console.log("user", user);
